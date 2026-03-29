@@ -11,7 +11,7 @@
         "illuminate/database": ">=7.0",
         "illuminate/support": ">=7.0",
         "nyholm/psr7": "^1.2",
-        "psr/log": "^1.0",
+        "psr/log": "^1.0|^2.0",
         "rabbitcms/modules": "^2.0",
         "rabbitcms/payments-provider": "1.0",
         "symfony/psr-http-message-bridge": "^2.0"
