@@ -23,25 +23,15 @@ class CreatePaymentsTransactionsTable extends Migration
             $table->string('client');
             $table->unsignedTinyInteger('status');
             $table->unsignedTinyInteger('type');
-            $table->unsignedInteger('card_id')->nullable();
-            $table->unsignedInteger('parent_id')->nullable();
-            $table->string("order_type")->charset('latin1');
-            $table->unsignedBigInteger("order_id");
-            $table->index(["order_type", "order_id"]);
+            $table->unsignedInteger('card_id')->nullable()->index('payments_transactions_card_id_foreign');
+            $table->unsignedInteger('parent_id')->nullable()->index('payments_transactions_parent_id_foreign');
+            $table->string("order_type");
+            $table->unsignedInteger("order_id");
+            $table->index(["order_id", "order_type"]);
             $table->decimal('amount', 16, 8);
             $table->string('invoice')->nullable();
             $table->timestamp('processed_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('parent_id')
-                ->references('id')
-                ->on($table->getTable())
-                ->onDelete('set null');
-
-            $table->foreign('card_id')
-                ->references('id')
-                ->on('payments_cards')
-                ->onDelete('set null');
         });
     }
 

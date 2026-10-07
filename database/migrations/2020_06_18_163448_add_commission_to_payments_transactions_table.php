@@ -13,7 +13,7 @@ class AddCommissionToPaymentsTransactionsTable extends Migration
     public function up()
     {
         Schema::table('payments_transactions', function (Blueprint $table) {
-            $table->decimal('commission', 16, 8)->after('amount')->default(0);
+            $table->decimal('commission', 16, 8)->after('amount');
         });
     }
 
